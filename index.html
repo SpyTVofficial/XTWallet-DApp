@@ -6,10 +6,11 @@
     </head>
 <body>
     <!-- your body -->
-    <button id="btn">DApp</button>
+    <button id="login">Login</button>
+    <button id="logout">Logout</button>
     <script>
-        var btn = document.getElementById("btn");
-        btn.addEventListener("click", function() {
+        var login = document.getElementById("login");
+        login.addEventListener("click", function() {
             (async () => {
                 const wallet = new sig$wallets.GenericExtensionWallet();
                 const {publicKey, connectionStatus, nodeHost, accountId} = await wallet.connect({
@@ -17,6 +18,10 @@
                     nodeHost: "https://europe.signum.network"   
                 });
             })();
+        }, false);
+        var logout = document.getElementById("logout");
+        logout.addEventListener("click", function(){
+            alert("Logout not available yet. Please use the XT-Wallet Extension to disconnect your Wallet from the site!");
         }, false);
     </script>
 </body>
