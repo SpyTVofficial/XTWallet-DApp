@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <title>Example XT Wallet D-App</title>
+    <script type="application/javascript"
+            src='https://cdn.jsdelivr.net/npm/@signumjs/core/dist/signumjs.min.js'></script>
+    <script type="application/javascript"
+            src='https://cdn.jsdelivr.net/npm/@signumjs/wallets@1.0.0-rc.10/dist/signumjs.wallets.js'></script>
+    <script type="application/javascript"
+            src='https://cdn.jsdelivr.net/npm/@signumjs/wallets@1.0.0-rc.10/dist/extension/genericExtensionWallet.d.ts'></script>
+</head>
+<body>
+    <!-- your body -->
+    <button id="btn">test</button>
+    <button id="btn2">DApp</button>
+    <script>
+        var btn = document.getElementById("btn");
+        btn.addEventListener("click", function() {
+            (async () => {
+                const api = sig$.composeApi({
+                    nodeHost: 'https://europe.signum.network',
+                });
+                const account = await api.account.getAccount({accountId: '16107620026796983538'});
+                    console.log('Account', account);
+            })();
+        }, false);
+        var btn2 = document.getElementById("btn2");
+        btn2.addEventListener("click", function() {
+            (async () => {
+                const wallet = new sig$wallets.GenericExtensionWallet();
+                const {publicKey, connectionStatus, nodeHost, accountId} = await wallet.connect({
+                    appName: "Your App",
+                    nodeHost: "https://europe.signum.network"   
+                });
+                await wallet.connect;
+            })();
+        }, false);
+    </script>
+</body>
