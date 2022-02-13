@@ -10,6 +10,7 @@
     <button id="logout">Logout</button>
     <div id="answerAccount"></div>
     <div id="answerNode"></div>
+    <div id="gotoExplorer"></div>
     <script>
         var login = document.getElementById("login");
         var answer = document.getElementById("answer");
@@ -30,6 +31,12 @@
                 const node = document.createTextNode("Your node host: " + nodeHost + "\n");
                 answerAccount.appendChild(accountIdAnswer);
                 answerNode.appendChild(node);
+
+                let explorer = document.createElement('a');
+                let explorerLink = document.createTextNode("Go to explorer");
+                explorer.appendChild(explorerLink);
+                explorer.href = "https://chain.signum.network/address/" + accountId;
+                document.body.appendChild(explorer);
             })();
         },false);
         var logout = document.getElementById("logout");
