@@ -8,8 +8,11 @@
     <!-- your body -->
     <button id="login">Login</button>
     <button id="logout">Logout</button>
+    <div id="answerAccount"></div>
+    <div id="answerNode"></div>
     <script>
         var login = document.getElementById("login");
+        var answer = document.getElementById("answer");
         login.addEventListener("click", function() {
             (async () => {
                 const wallet = new sig$wallets.GenericExtensionWallet();
@@ -17,8 +20,18 @@
                     appName: "Your App",
                     nodeHost: "https://europe.signum.network"   
                 });
+
+                const newDiv = document.createElement("div");
+                const newContent = document.createTextNode("You connected successfully");
+                newDiv.appendChild(newContent);
+                document.body.insertBefore(newDiv, answerAccount);
+
+                const accountIdAnswer = document.createTextNode("Your accountId: " + accountId + "\n");
+                const node = document.createTextNode("Your node host: " + nodeHost + "\n");
+                answerAccount.appendChild(accountIdAnswer);
+                answerNode.appendChild(node);
             })();
-        }, false);
+        },false);
         var logout = document.getElementById("logout");
         logout.addEventListener("click", function(){
             alert("Logout not available yet. Please use the XT-Wallet Extension to disconnect your Wallet from the site!");
