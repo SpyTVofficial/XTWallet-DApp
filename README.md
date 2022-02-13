@@ -8,7 +8,7 @@ Fell free to look into the html file
 
 Connects to the <a href="https://github.com/signum-network/signum-xt-wallet">Signum XT-Wallet</a>
 
-Ideas for the future:\n
+Ideas for the future:
 
     Donate button
     
