@@ -3,6 +3,11 @@
     <title>Example XT Wallet D-App</title>
     <script type="application/javascript"
             src='https://cdn.jsdelivr.net/npm/@signumjs/wallets@1.0.0-rc.10/dist/signumjs.wallets.js'></script>
+    <script type="application/javascript "
+            src='https://cdn.jsdelivr.net/npm/@signumjs/core/dist/signumjs.min.js'></script>
+    <script type="application/javascript"
+            src='https://cdn.jsdelivr.net/npm/@signumjs/util/dist/signumjs.util.min.js'></script>
+
     </head>
 <body>
     <!-- your body -->
@@ -11,11 +16,17 @@
     <div id="answerAccount"></div>
     <div id="answerNode"></div>
     <div id="gotoExplorer"></div>
+    <div id="balanceUser"></div>
     <script>
         var login = document.getElementById("login");
         var answer = document.getElementById("answer");
         login.addEventListener("click", function() {
             (async () => {
+
+                const api = sig$.composeApi({
+                    nodeHost: 'https://europe.signum.network'
+                });
+
                 const wallet = new sig$wallets.GenericExtensionWallet();
                 const {publicKey, connectionStatus, nodeHost, accountId} = await wallet.connect({
                     appName: "Your App",
@@ -32,11 +43,19 @@
                 answerAccount.appendChild(accountIdAnswer);
                 answerNode.appendChild(node);
 
-                let explorer = document.createElement('a');
-                let explorerLink = document.createTextNode("Go to explorer");
+                const explorer = document.createElement('a');
+                const explorerLink = document.createTextNode("Go to explorer \n");
                 explorer.appendChild(explorerLink);
                 explorer.href = "https://chain.signum.network/address/" + accountId;
                 document.body.appendChild(explorer);
+
+                api.account.getAccountBalance(accountId).then(balance => {
+                    const balUser = sig$util.Amount.fromPlanck(balance.balanceNQT).toString();
+                    const balDiv = document.createElement('div');
+                    const getBal = document.createTextNode("\nAccount Balance: " + balUser);
+                    balDiv.appendChild(getBal);
+                    document.body.insertBefore(balDiv, balanceUser);
+                })
             })();
         },false);
         var logout = document.getElementById("logout");
