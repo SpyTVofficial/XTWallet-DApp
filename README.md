@@ -1,6 +1,6 @@
 A simple Website with a single button
 
-You can click on the "DApp" button, so you can see how the XT-Wallet connects to the DApp
+You can click on the "Login" button, so you can see how the XT-Wallet connects to the DApp
 
 <b>We DO NOT collect any data</b>
 
