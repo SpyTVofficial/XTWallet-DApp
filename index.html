@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <head>
     <title>Example XT Wallet D-App</title>
+
+    <link rel="stylesheet"
+            href="style.css">
     <script type="application/javascript"
             src='https://cdn.jsdelivr.net/npm/@signumjs/wallets@1.0.0-rc.10/dist/signumjs.wallets.js'></script>
     <script type="application/javascript "
@@ -10,13 +13,16 @@
 
     </head>
 <body>
-    <!-- your body -->
-    <button id="login">Login</button>
-    <button id="logout">Logout</button>
+    <div class="header">
+        <button id="login">Login</button>
+        <button id="logout">Logout</button>
+    </div>
+
     <div id="answerAccount"></div>
     <div id="answerNode"></div>
     <div id="gotoExplorer"></div>
     <div id="balanceUser"></div>
+
     <script>
         var login = document.getElementById("login");
         var answer = document.getElementById("answer");
