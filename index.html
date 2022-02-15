@@ -23,13 +23,11 @@
         <div id="balanceUser"></div>
 
         <script>
-            var donationRecipient = "S-DFHC-U26W-H5QH-68Q7C";
             var login = document.getElementById("login");
             var answer = document.getElementById("answer");
             
             login.addEventListener("click", function() {
                 (async () => {
-
                     const api = sig$.composeApi({
                         nodeHost: 'https://europe.signum.network'
                     });
@@ -63,17 +61,17 @@
                         balDiv.appendChild(getBal);
                         document.body.insertBefore(balDiv, balanceUser);
                     })
-                })();
+                })()
             },false);
             var logout = document.getElementById("logout");
             logout.addEventListener("click", function(){
-                alert("Logout not available yet. Please use the XT-Wallet Extension to disconnect your Wallet from the site!");
+                location.reload();
             }, false);
             var donate = document.getElementById("donate");
             donate.addEventListener("click", function(){
                 return sig$util.createDeeplink({
                     payload: {
-                        recipient: donationRecipient,
+                        recipient: "S-DFHC-U26W-H5QH-68Q7C",
                         amountPlanck: sig$util.Amount.fromSigna('5.103635').getPlanck(),
                         feePlanck: sig$util.Amount.fromSigna('0.0735').getPlanck(),
                         message: '59b13cb7d10d5ead3b45b8e9039ebed100000000000000000000000000000000',
@@ -83,7 +81,7 @@
                         encrypt: false
                     },
                     action: 'pay'
-                }, )
+                }, );
             }, false);
         </script>
     </body>
