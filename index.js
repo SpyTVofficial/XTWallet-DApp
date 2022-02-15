@@ -4,13 +4,13 @@ var answer = document.getElementById("answer");
 login.addEventListener("click", function() {
     (async () => {
         const api = sig$.composeApi({
-            nodeHost: 'https://europe.signum.network'
+            nodeHost: 'https://europe3.testnet.signum.network/'
         });
 
         const wallet = new sig$wallets.GenericExtensionWallet();
         const {publicKey, connectionStatus, nodeHost, accountId} = await wallet.connect({
             appName: "Example App",
-            nodeHost: "https://europe.signum.network"   
+            nodeHost: "https://europe3.testnet.signum.network/"   
         });
 
         const newDiv = document.createElement("div");
@@ -26,7 +26,7 @@ login.addEventListener("click", function() {
         const explorer = document.createElement('a');
         const explorerLink = document.createTextNode("Go to explorer \n");
         explorer.appendChild(explorerLink);
-        explorer.href = "https://chain.signum.network/address/" + accountId;
+        explorer.href = "https://testnet.explorer.signum.network/address/" + accountId;
         document.body.appendChild(explorer);
 
         api.account.getAccountBalance(accountId).then(balance => {
