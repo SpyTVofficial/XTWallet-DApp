@@ -6,6 +6,7 @@
         .header {
             background-color: #333;
             overflow: hidden;
+            width: 100%;
             padding: 14px 16px;
             float: right;
         }
@@ -28,6 +29,16 @@
             background-color: #4CAF50;
             color: white;
         }
+
+        .footer {
+            position: fixed;
+            left:  0;
+            bottom: 0;
+            width: 100;
+            background-color: gray;
+            color: white;
+            text-align: center;
+        }
     </style>
     <script type="application/javascript"
             src='https://cdn.jsdelivr.net/npm/@signumjs/wallets@1.0.0-rc.10/dist/signumjs.wallets.js'></script>
@@ -46,6 +57,10 @@
         <div id="answerNode"></div>
         <div id="gotoExplorer"></div>
         <div id="balanceUser"></div>
+
+        <div class="footer">
+            <p>Example XT-Wallet DApp</p>
+        </div>
 
         <script>
             var login = document.getElementById("login");
