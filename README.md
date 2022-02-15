@@ -16,4 +16,4 @@ Ideas for the future:
     
     See pool mining stats (if possible)
 
-Join our <a href="discord.gg/7xS833tqh4"D>iscord Server</a> if you have any questions!
+Join our <a href="discord.gg/7xS833tqh4">Discord Server</a> if you have any questions!
