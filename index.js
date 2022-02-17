@@ -42,19 +42,3 @@ var logout = document.getElementById("logout");
 logout.addEventListener("click", function(){
     location.reload();
 }, false);
-var donate = document.getElementById("donate");
-donate.addEventListener("click", function(){
-    return sig$util.createDeeplink({
-        payload: {
-            recipient: "S-DFHC-U26W-H5QH-68Q7C",
-            amountPlanck: sig$util.Amount.fromSigna('5.103635').getPlanck(),
-            feePlanck: sig$util.Amount.fromSigna('0.0735').getPlanck(),
-            message: '59b13cb7d10d5ead3b45b8e9039ebed100000000000000000000000000000000',
-            messageIsText: false,
-            immutable: false,
-            deadline: 1440,
-            encrypt: false
-        },
-        action: 'pay'
-    }, );
-}, false);
