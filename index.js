@@ -56,6 +56,8 @@ login.addEventListener("click", function() {
         const explorer = document.createElement('a');
         const explorerLink = document.createTextNode("Go to explorer \n");
         explorer.appendChild(explorerLink);
+        explorer.target = '_blank'
+        explorer.rel = 'noopener noreferrer'
         explorer.href = isTestnet
           ? `https://t-chain.signum.network/address/${accountId}`
           : `https://chain.explorer.signum.network/address/${accountId}`;
