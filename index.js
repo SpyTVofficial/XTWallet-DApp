@@ -23,7 +23,7 @@ let connectionListener = null;
 login.addEventListener("click", function() {
     (async () => {
         const ledger = sig$.LedgerClientFactory.createClient({
-            nodeHost: 'https://europe3.testnet.signum.network'
+            nodeHost: 'europe3.testnet.signum.network'
         });
         const {networkName, addressPrefix, valueSuffix } = await ledger.network.getNetworkInfo()
         const isTestnet = networkName.endsWith('TESTNET')
