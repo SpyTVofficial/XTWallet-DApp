@@ -1,19 +1,19 @@
 var login = document.getElementById("login");
 var answer = document.getElementById("answer");
 
-function onNetworkChange({networkHost, networkName}) {
+function onNetworkChange({ networkHost, networkName }) {
     console.log('Network changed', networkName, networkHost)
 }
 
-function onAccountChange({accountId, accountPublicKey}) {
+function onAccountChange({ accountId, accountPublicKey }) {
     console.log('Account changed', accountId, accountPublicKey)
 }
 
-function onPermissionRemoved({origin}) {
+function onPermissionRemoved({ origin }) {
     console.log('Permission removed', origin)
 }
 
-function onAccountRemoved({accountId}) {
+function onAccountRemoved({ accountId }) {
     console.log('Account removed', accountId)
 }
 
@@ -21,11 +21,11 @@ let connectionListener = null;
 
 
 login.addEventListener("click", function() {
-    (async () => {
+    (async() => {
         const ledger = sig$.LedgerClientFactory.createClient({
-            nodeHost: 'europe3.testnet.signum.network'
+            nodeHost: 'https://europe3.signum.network'
         });
-        const {networkName, addressPrefix, valueSuffix } = await ledger.network.getNetworkInfo()
+        const { networkName, addressPrefix, valueSuffix } = await ledger.network.getNetworkInfo()
         const isTestnet = networkName.endsWith('TESTNET')
         const wallet = new sig$wallets.GenericExtensionWallet();
         const connection = await wallet.connect({
@@ -41,7 +41,7 @@ login.addEventListener("click", function() {
             onAccountRemoved: onAccountRemoved,
         });
 
-        const {accountId, currentNodeHost: nodeHost} = connection
+        const { accountId, currentNodeHost: nodeHost } = connection
 
         const newDiv = document.createElement("div");
         const newContent = document.createTextNode("You connected successfully");
@@ -58,25 +58,23 @@ login.addEventListener("click", function() {
         explorer.appendChild(explorerLink);
         explorer.target = '_blank'
         explorer.rel = 'noopener noreferrer'
-        explorer.href = isTestnet
-          ? `https://t-chain.signum.network/address/${accountId}`
-          : `https://chain.explorer.signum.network/address/${accountId}`;
+        explorer.href = isTestnet ?
+            `https://t-chain.signum.network/address/${accountId}` :
+            `https://chain.explorer.signum.network/address/${accountId}`;
 
         document.body.appendChild(explorer);
 
-        ledger.account.getAccountBalance(accountId).then(balance=>{
-              const balUser = sig$util.Amount.fromPlanck(balance.balanceNQT).getSigna();
-              const balDiv = document.createElement('div');
-              const getBal = document.createTextNode(`\nAccount Balance: ${balUser} ${valueSuffix}`);
-              balDiv.appendChild(getBal);
-              document.body.insertBefore(balDiv, balanceUser);
-          }
-        )
+        ledger.account.getAccountBalance(accountId).then(balance => {
+            const balUser = sig$util.Amount.fromPlanck(balance.balanceNQT).getSigna();
+            const balDiv = document.createElement('div');
+            const getBal = document.createTextNode(`\nAccount Balance: ${balUser} ${valueSuffix}`);
+            balDiv.appendChild(getBal);
+            document.body.insertBefore(balDiv, balanceUser);
+        })
     })()
-},false);
+}, false);
 var logout = document.getElementById("logout");
-logout.addEventListener("click", function(){
+logout.addEventListener("click", function() {
     connectionListener && connectionListener.unlisten()
     location.reload();
 }, false);
-
