@@ -60,7 +60,7 @@ login.addEventListener("click", function() {
         explorer.rel = 'noopener noreferrer'
         explorer.href = isTestnet ?
             `https://t-chain.signum.network/address/${accountId}` :
-            `https://chain.explorer.signum.network/address/${accountId}`;
+            `https://explorer.signum.network/address/${accountId}`;
 
         document.body.appendChild(explorer);
 
